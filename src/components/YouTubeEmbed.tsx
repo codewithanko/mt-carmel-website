@@ -2,8 +2,6 @@ import { useState } from "react";
 import { PlayCircle } from "lucide-react";
 
 type Props = {
-  /** The 11-character YouTube video ID — the part after "v=" in a YouTube URL,
-   *  or after "youtu.be/". e.g. for https://youtu.be/dQw4w9WgXcQ it's "dQw4w9WgXcQ" */
   videoId: string;
   title: string;
   className?: string;
@@ -17,7 +15,8 @@ export function YouTubeEmbed({ videoId, title, className }: Props) {
       <div className={`aspect-video w-full overflow-hidden rounded-lg bg-black ${className ?? ""}`}>
         <iframe
           className="h-full w-full"
-          src={`https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0`}
+          // Changed to standard youtube.com and removed autoplay=1 for mobile compatibility
+          src={`https://www.youtube.com/embed/${videoId}?rel=0`}
           title={title}
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen

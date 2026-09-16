@@ -86,24 +86,42 @@ function Index() {
 
   return (
     <div>
-      {/* Hero */}
-      <section className="relative overflow-hidden bg-cream dark:bg-background">
-        <div className="container-page grid items-center gap-12 py-20 sm:py-28 lg:grid-cols-2 lg:py-32">
+      {/* Hero with Professional Gradient Backdrop */}
+      <section className="relative overflow-hidden border-b border-border bg-cream dark:bg-background">
+        {/* Decorative gradient backdrop */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(55% 75% at 12% 15%, color-mix(in oklch, var(--color-primary) 26%, transparent) 0%, transparent 60%), radial-gradient(50% 65% at 88% 10%, color-mix(in oklch, var(--color-gold) 32%, transparent) 0%, transparent 65%), radial-gradient(70% 80% at 50% 110%, color-mix(in oklch, var(--color-espresso) 14%, transparent) 0%, transparent 70%)",
+          }}
+        />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-primary/15 blur-3xl"
+        />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -bottom-32 left-1/4 h-80 w-80 rounded-full bg-gold/20 blur-3xl"
+        />
+
+        <div className="container-page relative grid items-center gap-12 py-20 sm:py-28 lg:grid-cols-2 lg:py-32">
           <Reveal>
-            <p className="eyebrow">{site.network}</p>
+            <p className="eyebrow text-center lg:text-left">{site.network}</p>
             
-            {/* Animated Hero Title */}
-            <h1 className="mt-4 text-balance text-5xl sm:text-6xl lg:text-7xl">
+            {/* Animated Hero Title - Responsive and prevents cutoff */}
+            <h1 className="mt-4 text-balance text-5xl sm:text-6xl lg:text-7xl text-center lg:text-left">
               More Than A Church,{" "}
-              <span className="relative inline-block text-primary">
-                {/* Invisible placeholder locks the layout size to prevent any crushing/shifting */}
-                <span className="invisible">We Are One Family</span>
+              <span className="relative inline-block text-primary align-bottom">
+                {/* Invisible placeholder reserves space, matching the responsive text sizes */}
+                <span className="invisible text-5xl sm:text-6xl lg:text-7xl">We Are One Family</span>
                 
-                {/* Animated phrases layered on top */}
+                {/* Animated phrases layered on top, allowed to wrap on mobile */}
                 {heroPhrases.map((phrase, i) => (
                   <span
                     key={phrase}
-                    className={`absolute left-0 top-0 w-full whitespace-nowrap transition-all duration-700 ease-in-out sm:whitespace-normal ${
+                    className={`absolute left-0 top-0 w-full text-center lg:text-left transition-all duration-700 ease-in-out ${
                       i === phraseIndex
                         ? "translate-y-0 opacity-100"
                         : "translate-y-4 opacity-0"
@@ -115,11 +133,11 @@ function Index() {
               </span>
             </h1>
 
-            <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground text-center lg:text-left mx-auto lg:mx-0">
               Welcome to {site.fullName} — a house of worship, teaching and community set in the
               heart of {site.address}. Come as you are and find your family.
             </p>
-            <div className="mt-8 flex flex-wrap gap-4">
+            <div className="mt-8 flex flex-wrap justify-center lg:justify-start gap-4">
               <Link
                 to="/giving"
                 className="inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3.5 text-sm font-semibold text-primary-foreground transition-transform hover:-translate-y-0.5 hover:bg-primary/90"
