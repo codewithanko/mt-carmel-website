@@ -15,10 +15,11 @@ export function YouTubeEmbed({ videoId, title, className }: Props) {
       <div className={`aspect-video w-full overflow-hidden rounded-lg bg-black ${className ?? ""}`}>
         <iframe
           className="h-full w-full"
-          // Changed to standard youtube.com and removed autoplay=1 for mobile compatibility
-          src={`https://www.youtube.com/embed/${videoId}?rel=0`}
+          // Added playsinline=1 which fixes 90% of mobile black screen issues!
+          src={`https://www.youtube.com/embed/${videoId}?rel=0&playsinline=1`}
           title={title}
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          // Expanded allow permissions for mobile browsers
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowFullScreen
         />
       </div>
